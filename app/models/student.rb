@@ -39,6 +39,25 @@ class Student < ActiveRecord::Base
   end
 
   def list_courses
+    puts "How would you like to order your courses?\n\n1) By Title\n\n2) By Professor\n\n3) By Grade\n\n"
+
+    input = gets.chomp
+
+    case input
+    when "1"
+      my_courses
+    when "2"
+      puts "STILL WORKING ON THE PROFESSORS!"
+    when "3"
+      puts "STILL WORKING ON THE GRADES!"
+    else
+      "Please type 1, 2 or 3."
+    end
+  end
+
+private
+
+  def my_courses
     my_course_ids = StudentRecord.where(student_id: self.id).select(:course_id)
     if my_course_ids.length == 0
       puts "You are not enrolled in any courses at the moment."

@@ -11,7 +11,7 @@ class Student < ActiveRecord::Base
   end
 
   def record_by_course(course)
-    StudentRecord.find_by(student_id: self.id, course_id: course.course_id)
+    StudentRecord.find_by(student_id: self.id, course_id: course.id)
   end
 
   def add_course(course)
@@ -67,14 +67,6 @@ class Student < ActiveRecord::Base
       "Please type 1, 2 or 3."
     end
   end
-
-  # def create_record
-  #   if StudentRecord.find_by(student_id: self.id) == nil
-  #     StudentRecord.create(student_id: self.id)
-  #     puts "You now have a student record."
-  #   else puts "You already have a student record."
-  #   end
-  # end
 
   def my_courses_by_professor
     my_course_ids = StudentRecord.where(student_id: self.id).select(:course_id)

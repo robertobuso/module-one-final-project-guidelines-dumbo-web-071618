@@ -6,8 +6,10 @@ class Course < ActiveRecord::Base
   has_many :grades
 
   def student_roster
-    Student.where(self.student_id = id)
+    students_num = StudentRecord.where(course_id: self.id).select(:student_id)
+
+    students_num.map do |student|
+      Student.find(student.student_id).full_name
+    end
   end
-
-
 end

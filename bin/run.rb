@@ -1,16 +1,21 @@
 require_relative '../config/environment'
 
-# #Students
-# joan = Student.find(1)
-# mickey = Student.find(2)
-# ellie = Student.find(3)
-#
-# #Professors
-# jeremy = Professor.find(1)
-# eileen = Professor.find(2)
-# glen = Professor.find(3)
-
 #To Test Before Admin - Assign Professors to Courses
+
+#Students
+joan = Student.find(25)
+mickey = Student.find(26)
+ellie = Student.find(27)
+
+#Professors
+jeremy = Professor.find(25)
+eileen = Professor.find(26)
+glen = Professor.find(27)
+
+#Courses
+screenwriting = Course.find(14)
+law = Course.find(15)
+sound = Course.find(16)
 
 
 binding.pry

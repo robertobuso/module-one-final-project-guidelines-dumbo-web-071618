@@ -6,14 +6,6 @@ class Student < ActiveRecord::Base
   has_many :grades, through: :student_records
   has_many :professors, through: :courses
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-
-  def record_by_course(course)
-    StudentRecord.find_by(student_id: self.id, course_id: course.id)
-  end
-
   def add_course(course)
     if record_by_course(course).nil?
       StudentRecord.create(student_id: self.id, course_id: course.id, professor_id: course.professor_id)
@@ -83,6 +75,14 @@ class Student < ActiveRecord::Base
         puts "Professor\n#{my_professor_name}\n\nCourse\n#{my_course_title}\n\n\n"
       end
     end
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def record_by_course(course)
+    StudentRecord.find_by(student_id: self.id, course_id: course.id)
   end
 
 private

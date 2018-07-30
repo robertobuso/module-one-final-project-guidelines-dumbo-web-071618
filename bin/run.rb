@@ -1,5 +1,16 @@
 require_relative '../config/environment'
 
+puts "Welcome to the Academic Database".yellow
+puts "A Work in Progress".red
+puts "Please enter your first and last name:\n"
+
+first_input = gets.chomp
+two_names = first_input.split(" ")
+user = User.new(two_names[0], two_names[1])
+user.validate
+
+
+
 #To Test Before Admin - Assign Professors to Courses
 
 #Students

@@ -1,5 +1,4 @@
 require_relative '../config/environment'
-
 @@user = ""
 
 puts "Welcome to the Academic Database".yellow
@@ -12,13 +11,10 @@ user = User.new(two_names[0], two_names[1])
 user.validate
 
 input =""
+user = @@user
 until(input=="exit")
-  user = @@user
   puts "What would you like to do?"
-  # send gets.chomp
-  input = gets.chomp
-  send(input)
-  #
+   user.send gets.chomp
 end
 
 #To Test Before Admin - Assign Professors to Courses

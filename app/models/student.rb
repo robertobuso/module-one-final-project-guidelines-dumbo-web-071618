@@ -65,7 +65,7 @@ class Student < ActiveRecord::Base
     if my_course_ids.length == 0
       puts "You are not enrolled in any courses at the moment."
       else
-      puts "Dear #{first_name},\n\nYou are currently enrolled in the following courses:\n"
+      puts "Dear #{first_name},\n\nYou are currently enrolled in the following courses:\n".red
 
       my_course_ids.each do |course|
         my_professor_id = Course.find(course.course_id).professor_id

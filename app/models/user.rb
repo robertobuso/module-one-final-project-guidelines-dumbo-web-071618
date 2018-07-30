@@ -16,9 +16,11 @@ class User
   def validate
     if Professor.find_by(first_name: first_name, last_name: last_name)
       @role = "Professor"
+      @@user = Professor.find_by(first_name: first_name, last_name: last_name)
       puts "Welcome back, Professor #{last_name}."
     elsif Student.find_by(first_name: first_name, last_name: last_name)
       @role = "Student"
+      @@user = Student.find_by(first_name: first_name, last_name: last_name)
       puts "Welcome back, #{first_name}!"
     else
       create_new_role
@@ -35,13 +37,11 @@ class User
       @@user = Student.new(first_name: first_name, last_name: last_name)
       @role = "Student"
       puts "You are now a student in the system."
-#How do we get user to inherit from Student Class???
 
     elsif input == "2" || input == "professor"
       @@user = Professor.new(first_name: first_name, last_name: last_name)
       @role = "Professor"
       puts "You are now a Professor in the system."
-#How do we get user to inherit from Professor Class???
 
     else puts "I don't understand #{input}. Please type either the number or the type of role. Thank you."
     end

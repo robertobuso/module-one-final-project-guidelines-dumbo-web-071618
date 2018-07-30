@@ -9,9 +9,9 @@ class Professor < ActiveRecord::Base
   end
 
   def create_course(title, description, day, time, semester)
-    new_course_info = {professor_id: self.id, title: title, description: description, day: day, time: time, semester: semester}
-    if Course.find_by(new_course_info).nil?
-      Course.create(new_course_info)
+    # new_course_info = (professor_id: self.id, title: title, description: description, day: day, time: time, semester: semester)
+    if Course.find_by(professor_id: self.id, title: title).nil?
+      Course.create(professor_id: self.id, title: title, description: description, day: day, time: time, semester: semester)
     else puts "This course already exists."
     end
   end

@@ -24,7 +24,9 @@ class Student < ActiveRecord::Base
 
   def add_course_by_title(title)
     course = Course.find_by(title: title)
-    if StudentRecord.find_by(course_id: course.id, student_id: self.id).nil?
+    if course.nil?
+      puts "This course does not exist."
+    elsif StudentRecord.find_by(course_id: course.id, student_id: self.id).nil?
       StudentRecord.create(student_id: self.id, course_id: course.id, professor_id: course.professor_id)
     else
       puts "You are already enrolled in #{course.title}."
@@ -81,9 +83,12 @@ class Student < ActiveRecord::Base
       else
       puts "Dear #{first_name},\n\nYou are currently enrolled in the following courses:\n"
 
-      my_course_ids.map do |course|
-        my_professor_id = Course.find(x[0].course_id).professor_id
-        # "#{Professor.find_by(professor_id:full_name} - #{Course.find(course.course_id).title}"
+      my_course_ids.each do |course|
+        my_professor_id = Course.find(course.course_id).professor_id
+        my_course_title = Course.find(course.course_id).title
+        my_professor_name = Professor.find(my_professor_id).full_name
+
+        puts "Professor\n#{my_professor_name}\n\nCourse\n#{my_course_title}\n\n\n"
       end
     end
   end
@@ -97,7 +102,7 @@ private
       else
       puts "Dear #{first_name},\n\nYou are currently enrolled in the following courses:\n"
       my_course_ids.map do |id|
-        Course.find_by(course_id: id.course_id).title
+        Course.find_by(id: id.course_id).title
       end
     end
   end
